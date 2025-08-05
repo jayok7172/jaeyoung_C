@@ -1,19 +1,22 @@
-#include <stdio.h>
-#include <string.h>
-#define MAX(a,b) a>b?a:b
- 
-char N[1000001];
+#define _CRT_SECURE_NO_WARNINGS
+# include <stdio.h>
+# include <string.h>
+# define MAX(a,b) a>b?a:b
+
+
 int main() {
-    int set = 0, num[10] = { 0 };
-    scanf("%s", N);
-    for (int i = 0; i < strlen(N); i++)
-        num[N[i] - '0']++;
- 
-    for (int i = 0; i < 10; i++) 
-        if (i != 6 && i != 9)     set = MAX(num[i], set);
- 
-    set = MAX((num[6] + num[9] + 1) / 2, set);
- 
-    printf("%d\n", set);
-    return 0;
+	char bin[100];
+	scanf("%s", bin);
+	int len;
+	int set = 0;
+	len = strlen(bin);
+	int R[10] = { 0 };
+	for (int i = 0; i < len; i++) {
+		R[bin[i] - '0']++;
+	}
+	for (int i = 0; i < 10; i++) {
+		if (i != 6 && i != 9) set = MAX(R[i], set);
+	}
+	set = MAX((R[6] + R[9] + 1) / 2, set);
+	printf("%d", set);
 }
