@@ -1,30 +1,32 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
- 
-int main(void){
+
+int is_prime(int x) {
+    if (x < 2) return 0;
+    for (int i = 2; i * i <= x; i++) {
+        if (x % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main(void) {
     int M, N;
-    scanf("%d\n%d", &M, &N);
- 
-    int sum=0, min=0;
-    for(int i=M; i<=N; i++){
-       
-        for(int j=2; j<i; j++){ 
-            if(i%j==0){
-                break;
-            }
-            if(j==i-1){
-             
-                sum+=i;
-                if(min==0)
-                    min = i;
-            }
-        }
-        if(i==2){
-            sum+=i;
-            min=i; 
+    scanf("%d %d", &M, &N);
+
+    int sum = 0;
+    int min_prime = -1;
+
+    for (int i = M; i <= N; i++) {
+        if (is_prime(i)) {
+            sum += i;
+            if (min_prime == -1) min_prime = i;
         }
     }
-    if(min!=0)
-        printf("%d\n%d", sum, min);
-    else
-        printf("-1");
+
+    if (min_prime == -1) {
+        printf("-1\n");
+    } else {
+        printf("%d\n%d\n", sum, min_prime);
+    }
+    return 0;
 }
