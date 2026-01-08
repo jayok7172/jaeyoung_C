@@ -1,19 +1,18 @@
-	#define _CRT_SECURE_NO_WARNINGS
-	#include <stdio.h>
-	#include <string.h>
+#define _CRT_NO_SECURE_WARNINGS
+#include <stdio.h>
 
-	int main() {
-		int N, K;
-		int cnt = 0;
-		int result;
-		scanf("%d%d", &N, &K);
-		for (int i = 1; i <= N; i++) {
-			if (N % i == 0) cnt++;
+int main() {
+	int N, K;
+	scanf("%d%d", &N, &K);
+	int cnt = 0;
+	for (int i = 1; i <= N; i++) {
+		if (N % i == 0) {
+			cnt++;
 			if (cnt == K) {
-				result = i;
+				printf("%d", i);
 				break;
 			}
 		}
-		if (cnt < K) printf("0");
-		else printf("%d", result);	
 	}
+	if (cnt < K) printf("0");
+}
