@@ -9,6 +9,8 @@ def solution(nums):
             if s % j ==0:
                 a = False
                 break
-        if a == True:
+        if a == True :
             answer +=1
+        else:
+            pass
     return answer
