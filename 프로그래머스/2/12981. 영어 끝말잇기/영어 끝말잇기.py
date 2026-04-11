@@ -1,15 +1,14 @@
 def solution(n, words):
-    used = []
-
-    for i in range(len(words)):
-        # 1) 이미 나온 단어인지 검사
-        if words[i] in used:
-            return [i % n + 1, i // n + 1]
-
-        # 2) 이전 단어와 끝말잇기가 되는지 검사
-        if i > 0 and words[i-1][-1] != words[i][0]:
-            return [i % n + 1, i // n + 1]
-
-        used.append(words[i])
-
-    return [0, 0]
+    answer = []
+    stack = []
+    stack.append(words[0])
+    for i in range(1,len(words)):
+        if stack[-1][-1] != words[i][0] or words[i] in stack:
+            answer.append(i%n+1)
+            answer.append(i//n+1)
+            break
+        else:
+            stack.append(words[i])
+    if not answer:
+        answer =[0,0]
+    return answer
